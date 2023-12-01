@@ -14,7 +14,7 @@ public class Menu {
 
     public static void menu(int opcion){
 
-        int opcionesAccion;
+        int opcionesAccion=9;
         switch (opcion) {
 
             case 1:
@@ -70,7 +70,13 @@ public class Menu {
                             "0. Salir\n");
 
                     System.out.println("Eliga una opcion");
-                    opcionesAccion = scanner.nextInt();
+
+                    try {
+                        opcionesAccion = scanner.nextInt();
+                    }catch (Exception e){
+                        System.out.println("Debe ingresar una opcion valida");
+                        scanner.nextLine();
+                    }
 
                     switch (opcionesAccion){
 
@@ -153,7 +159,13 @@ public class Menu {
                             "0. Salir\n");
 
                     System.out.println("Eliga una opcion");
-                    opcionesAccion = scanner.nextInt();
+
+                    try {
+                        opcionesAccion = scanner.nextInt();
+                    }catch (Exception e){
+                        System.out.println("Debe ingresar una opcion valida");
+                        scanner.nextLine();
+                    }
 
                     switch (opcionesAccion){
 
@@ -237,7 +249,12 @@ public class Menu {
                             "0. Salir\n");
 
                     System.out.println("Eliga una opcion");
-                    opcionesAccion = scanner.nextInt();
+                    try {
+                        opcionesAccion = scanner.nextInt();
+                    }catch (Exception e){
+                        System.out.println("Debe ingresar una opcion valida");
+                        scanner.nextLine();
+                    }
 
                     switch (opcionesAccion){
 
@@ -321,7 +338,12 @@ public class Menu {
                             "0. Salir\n");
 
                     System.out.println("Eliga una opcion");
-                    opcionesAccion = scanner.nextInt();
+                    try {
+                        opcionesAccion = scanner.nextInt();
+                    }catch (Exception e){
+                        System.out.println("Debe ingresar una opcion valida");
+                        scanner.nextLine();
+                    }
 
                     switch (opcionesAccion){
 

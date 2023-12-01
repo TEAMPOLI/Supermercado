@@ -17,12 +17,11 @@ public class ProductService {
         System.out.println("Producto agregado con exito!!!");
     }
 
-    public static List<Producto> obtenerListaDeProductos() {
-        List<Producto> listaDeProductos = ProductService.productolist;
+    public static void obtenerListaDeProductos() {
 
         int i = 1;
         //Mostrar lista de productos
-        for (Producto p : listaDeProductos) {
+        for (Producto p : productolist) {
 
             System.out.println("Producto #" + i + " ID:" + p.getId() +
                     " Nombre: " + p.getNombre() +
@@ -32,7 +31,6 @@ public class ProductService {
             i++;
         }
 
-        return productolist;
     }
 
     public static void editarProducto(Producto productoNuevosValores) {
@@ -112,7 +110,7 @@ public class ProductService {
 
 
     public static Producto buscarProductoPorID(int id) {
-        for (Producto producto : ProductService.obtenerListaDeProductos()) {
+        for (Producto producto : productolist) {
             if (producto.getId() == id) {
                 return producto;
             }

@@ -9,7 +9,8 @@ public class PuntoDeVenta {
 
     public static void main(String[] args) {
 
-        int opcion ;
+        boolean salir=false;
+
 
         do {
 
@@ -23,12 +24,28 @@ public class PuntoDeVenta {
                     +"0.Salir\n"
             );
             System.out.println("Ingrese su opcion\n");
-            opcion =scanner.nextInt();
 
 
-        Menu.menu(opcion);
+           try{
 
-        }while (opcion!=0);
+               int opcion =scanner.nextInt();
+               Menu.menu(opcion);
+
+               if(opcion==0){
+
+                   salir=true;
+               }
+
+           }catch (Exception e){
+
+               scanner.nextLine();
+               System.out.println("Tiene que ser un numero");
+           }
+
+
+
+
+        }while (!salir);
 
     }
 
