@@ -1,5 +1,7 @@
 package Menu;
 import Employee.Employee;
+import NewSell.NewSell;
+import NewSellService.NewSellService;
 import Product.Producto;
 import ProductService.ProductService;
 import java.util.Scanner;
@@ -18,6 +20,17 @@ public class Menu {
         switch (opcion) {
 
             case 1:
+                Producto producto4 = new Producto();
+
+                System.out.println("Ingrese el id del producto a vender");
+                producto4.setId(scanner.nextInt());
+                System.out.println("Ingrese el nombre del producto");
+                producto4.setNombre(scanner.next());
+                System.out.println("Ingrese la cantidad a verder");
+                
+                int cantidad = scanner.nextInt();
+
+                ProductService.venderProducto(producto4,cantidad);
 
                 break;
 
@@ -356,7 +369,7 @@ public class Menu {
                 break;
 
             case 6:
-
+                ProductService.obtenerListaDeVentas();
                 break;
 
             case 0:
