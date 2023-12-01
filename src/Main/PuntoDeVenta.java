@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 
 public class PuntoDeVenta {
-        /*private static Menu menu = new Menu();
-        private static ProductService productService = new ProductService();*/
         private static Scanner scanner = new Scanner(System.in);
 
 

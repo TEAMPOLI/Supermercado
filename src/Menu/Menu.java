@@ -1,7 +1,5 @@
 package Menu;
 import Employee.Employee;
-import NewSell.NewSell;
-import NewSellService.NewSellService;
 import Product.Producto;
 import ProductService.ProductService;
 import java.util.Scanner;
@@ -21,16 +19,44 @@ public class Menu {
 
             case 1:
                 Producto producto4 = new Producto();
+                Employee employee4 = new Employee();
+                Client client4 = new Client();
 
+                ProductService.obtenerListaDeProductos();
                 System.out.println("Ingrese el id del producto a vender");
-                producto4.setId(scanner.nextInt());
-                System.out.println("Ingrese el nombre del producto");
-                producto4.setNombre(scanner.next());
-                System.out.println("Ingrese la cantidad a verder");
-                
-                int cantidad = scanner.nextInt();
+                int idProductoAVender = scanner.nextInt();
 
-                ProductService.venderProducto(producto4,cantidad);
+                // Buscar el producto correspondiente en la lista de productos
+
+                Producto productoEncontrado = ProductService.buscarProductoPorID(idProductoAVender);
+
+                if (productoEncontrado != null) {
+                    // Asignar los valores encontrados al producto4
+                    producto4.setId(productoEncontrado.getId());
+                    producto4.setNombre(productoEncontrado.getNombre());
+                    producto4.setPrecio(productoEncontrado.getPrecio());
+                    producto4.setCantidad(productoEncontrado.getCantidad());
+
+                    System.out.println("Ingrese la cantidad a vender");
+                    int cantidad = scanner.nextInt();
+
+                    // Aquí necesitarás obtener la información del vendedor y cliente
+
+                    System.out.println("Ingrese la id del empleado");
+                    employee4.setId(scanner.nextInt());
+                    System.out.println("Ingrese el nombre del empleado");
+                    employee4.setNombre(scanner.next());
+
+                    System.out.println("Ingrese la id del cliente");
+                    client4.setId(scanner.nextInt());
+                    System.out.println("Ingrese el nombre del cliente");
+                    client4.setNombre(scanner.next());
+
+                    ProductService.venderProducto(producto4, cantidad, employee4, client4);
+
+                } else {
+                    System.out.println("Producto no encontrado");
+                }
 
                 break;
 

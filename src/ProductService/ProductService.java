@@ -3,6 +3,8 @@ import Product.Producto;
 import java.util.ArrayList;
 import java.util.List;
 import NewSell.NewSell;
+import Employee.Employee;
+import Client.Client;
 public class ProductService {
 
     private static List<Producto> productolist = new ArrayList<>();
@@ -59,15 +61,14 @@ public class ProductService {
         return false;
     }
 
-    public static boolean venderProducto(Producto productoVenta, int cantidadVenta) {
-
+    public static boolean venderProducto(Producto productoVenta, int cantidadVenta, Employee vendedor, Client cliente) {
         for (Producto producto : productolist) {
             if (producto.getId() == productoVenta.getId()) {
                 if (producto.getCantidad() >= cantidadVenta) {
                     int cantidadActual = producto.getCantidad();
                     producto.setCantidad(cantidadActual - cantidadVenta);
 
-                    registrarVenta(productoVenta, cantidadVenta);
+                    registrarVenta(productoVenta, cantidadVenta, vendedor, cliente);
 
                     System.out.println("¡Venta realizada correctamente!");
                     return true;
@@ -81,17 +82,42 @@ public class ProductService {
         return false;
     }
 
-    private static void registrarVenta(Producto producto, int cantidad) {
-        NewSell nuevaVenta = new NewSell(producto, cantidad);
+
+    public static void registrarVenta(Producto producto, int cantidad, Employee vendedor, Client cliente) {
+        NewSell nuevaVenta = new NewSell(producto, cantidad, vendedor, cliente);
         listaDeVentas.add(nuevaVenta);
+        }
+
+
+    public static void obtenerListaDeVentas() {
+        int i = 1;
+
+        for (NewSell n : listaDeVentas) {
+            Producto producto = n.getProducto();
+            Employee vendedor = n.getVendedor();
+            Client cliente = n.getCliente();
+
+            System.out.println("Venta #" + i + ":");
+            System.out.println("ID Producto: " + producto.getId() +
+                    ", Nombre Producto: " + producto.getNombre() +
+                    ", Cantidad Vendida: " + n.getCantidadVendida() +
+                    ", Nombre Vendedor: " + vendedor.getNombre() +
+                    ", ID Vendedor: " + vendedor.getId() +
+                    ", Nombre Cliente: " + cliente.getNombre() +
+                    ", ID Cliente: " + cliente.getId());
+
+            i++;
+        }
     }
 
-    public static List<NewSell> obtenerListaDeVentas() {
-        for (NewSell n : listaDeVentas) {
-            System.out.println("Venta - Producto: " + n.getProducto().getNombre() +
-                    ", Cantidad: " + n.getCantidadVendida());
+
+    public static Producto buscarProductoPorID(int id) {
+        for (Producto producto : ProductService.obtenerListaDeProductos()) {
+            if (producto.getId() == id) {
+                return producto;
+            }
         }
-        return listaDeVentas;
+        return null;
     }
 }
 
